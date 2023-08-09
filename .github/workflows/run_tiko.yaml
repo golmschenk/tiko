@@ -1,0 +1,23 @@
+name: run_tiko
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_tiko_job:
+    name: run_tiko_job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout_code
+        uses: actions/checkout@v2
+
+      - name: set_up_rust
+        uses: actions/setup-rust@v2
+        with:
+          rust-version: stable
+
+      - name: run_tiko_step
+        run: cargo run

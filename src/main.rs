@@ -10,10 +10,11 @@ fn main() -> Result<(), Box<dyn Error>> {
 fn handle_nu() {
     let nu_command_string = "nu";
     if command_exists(nu_command_string) {
-        println!("The command '{}' exists.", nu_command_string);
+        println!("`{}` found.", nu_command_string);
     } else {
-        println!("The command '{}' does not exist.", nu_command_string);
+        println!("`{}` not found. Installing...", nu_command_string);
         install_nu();
+        println!("Finished installing `{}`.", nu_command_string);
     };
 }
 
