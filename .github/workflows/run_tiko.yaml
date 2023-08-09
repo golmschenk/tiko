@@ -20,4 +20,4 @@ jobs:
           toolchain: stable
 
       - name: run_tiko_step
-        run: RUST_BACKTRACE=full cargo run
+        run: RUST_BACKTRACE=1 cargo run
