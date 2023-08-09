@@ -16,8 +16,6 @@ jobs:
 
       - name: set_up_rust
         uses: actions-rs/toolchain@v1
-        with:
-          rust-version: stable
 
       - name: run_tiko_step
         run: cargo run
