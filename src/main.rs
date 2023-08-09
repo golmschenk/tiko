@@ -31,16 +31,16 @@ fn install_nu() {
                 println!(
                     "Exit status of `{:?}` was unexpectedly false.\n\
                      The output of the command was:\n{:?}",
-                    nu_install_command, nu_install_command.output().unwrap()
+                    nu_install_command, output.stdout
                 );
                 panic!()
             }
         },
         Err(error) => {
             println!(
-                "Error running `{:?}`: `{:?}`.\n\
-                 The output of the command was:\n{:?}",
-                nu_install_command, error, nu_install_command.output().unwrap());
+                "Error running `{:?}`:\n`{}`",
+                nu_install_command, error.to_string()
+            );
             panic!()
         }
     }
