@@ -27,9 +27,11 @@ fn install_nu() {
     {
         Ok(output) => match output.status.success() {
             true => (),
-            false => panic!("Exit status of `{:?}` was unexpectedly false.", nu_install_command)
+            false => panic!("Exit status of `{:?}` was unexpectedly false.\n\
+            The output of the command was:\n{}", nu_install_command, nu_install_command.output()!)
         },
-        Err(error) => panic!("Error running `{:?}`: `{:?}`.", nu_install_command, error),
+        Err(error) => panic!("Error running `{:?}`: `{:?}`.\n\
+        The output of the command was:\n{}", nu_install_command, error, nu_install_command.output()!),
     }
 }
 
