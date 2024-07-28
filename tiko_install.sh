@@ -11,7 +11,7 @@ miniforge3/condabin/conda config --set auto_activate_base false > ${LOG_PATH} 2>
 . miniforge3/condabin/conda init bash > ${LOG_PATH} 2> >(tee -a ${LOG_PATH} >&2)
 
 echo "Creating the default Conda environment."
-DEFAULT_CONDA_ENV_NAME=default_env
+DEFAULT_CONDA_ENV_NAME="default_env"
 conda create --name=${DEFAULT_CONDA_ENV_NAME} python > ${LOG_PATH} 2> >(tee -a ${LOG_PATH} >&2)
 conda activate ${DEFAULT_CONDA_ENV_NAME} > ${LOG_PATH} 2> >(tee -a ${LOG_PATH} >&2)
 
