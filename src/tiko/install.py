@@ -26,7 +26,6 @@ class Installer:
         process_list(['dummy', 'rust'], self.terminal)
 
 
-
 if __name__ == '__main__':
     installer = Installer.new()
     installer.install()
