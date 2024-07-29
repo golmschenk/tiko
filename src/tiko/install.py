@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Self
 
 from tiko.logging import set_up_default_logger
+from tiko.module_processing import process_list
 from tiko.terminal import Terminal
 
 
@@ -22,23 +23,10 @@ class Installer:
         tiko_configuration_path = Path('tiko_configuration.toml')
         with tiko_configuration_path.open('rb') as tiko_configuration_file:
             tiko_configuration_dictionary = tomllib.load(tiko_configuration_file)
-        pass
-
-
-    def is_rust_installed(self) -> bool:
-        self.terminal.run_command('which cargo')
-
-
-    def install_rust(self) -> None:
-        pass
-
-
-    def process_rust(self) -> None:
-        if not self.is_rust_installed():
-            self.install_rust()
+        process_list(['dummy', 'rust'], self.terminal)
 
 
 
 if __name__ == '__main__':
     installer = Installer.new()
-    installer.is_rust_installed()
+    installer.install()
