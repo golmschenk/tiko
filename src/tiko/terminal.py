@@ -28,9 +28,13 @@ class Terminal:
         process.expect(prompt_prefix)
         return instance
 
-    def run_command(self, command: str) -> (str, str):
+    def run_command(self, command: str) -> str:
         self.process.sendline(command)
         self.process.expect(prompt_prefix)
+        output = self.log_and_return_before()
+        return output
+
+    def log_and_return_before(self) -> str:
         output = self.process.before
         output = output.replace('\r\n', '\n')
         for output_line in output.splitlines():
