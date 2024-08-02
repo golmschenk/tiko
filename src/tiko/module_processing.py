@@ -1,10 +1,12 @@
 from tiko.module import Module
+from tiko.modules.nu_module import NuModule
 from tiko.modules.rust_module import RustModule
 from tiko.modules.zellij_module import ZellijModule
 from tiko.terminal import Terminal
 
 module_name_to_class_mapping = {
     'rust': RustModule,
+    'nu': NuModule,
     'zellij': ZellijModule,
 }
 

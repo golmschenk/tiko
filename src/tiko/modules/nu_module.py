@@ -1,5 +1,6 @@
 from tiko.module import Module, InstallConfirmationError
 from tiko.modules.rust_module import RustModule
+from tiko.terminal import Terminal
 
 
 class NuModule(Module):
@@ -15,3 +16,9 @@ class NuModule(Module):
             # TODO: Run `plugin add ~/.cargo/bin/nu_plugin_polars` inside a nu instance.
             if not self.check_if_installed():
                 raise InstallConfirmationError
+
+
+if __name__ == '__main__':
+    module = NuModule(Terminal.new())
+    module.install()
+
