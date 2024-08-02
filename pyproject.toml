@@ -42,6 +42,18 @@ omit = [
   "src/tiko/__about__.py",
 ]
 
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = [
+  "- coverage combine",
+  "coverage report",
+]
+cov = [
+  "test-cov",
+  "cov-report",
+]
+
 [tool.coverage.paths]
 tiko = ["src/tiko", "*/tiko/src/tiko"]
 tests = ["tests", "*/tiko/tests"]
