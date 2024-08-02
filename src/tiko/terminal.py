@@ -24,13 +24,13 @@ class Terminal:
         process = spawn('/bin/bash', encoding='utf-8')
         instance = cls(process=process)
         process.sendline(f'export PS1="{prompt_prefix}> "')
-        process.expect(prompt_prefix)
-        process.expect(prompt_prefix)
+        process.expect(prompt_prefix, timeout=None)
+        process.expect(prompt_prefix, timeout=None)
         return instance
 
     def run_command(self, command: str) -> str:
         self.process.sendline(command)
-        self.process.expect(prompt_prefix)
+        self.process.expect(prompt_prefix, timeout=None)
         output = self.log_and_return_before()
         return output
 
@@ -43,4 +43,5 @@ class Terminal:
 
     def check_if_command_exists(self, command: str) -> bool:
         output = self.run_command(f'which {command}')
-        return len(output) > 0
+        output_lines = output.splitlines()
+        return len(output_lines) > 1
