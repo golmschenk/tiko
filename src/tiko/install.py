@@ -24,7 +24,7 @@ class Installer:
         if tiko_configuration_path.exists():
             with tiko_configuration_path.open('rb') as tiko_configuration_file:
                 tiko_configuration_dictionary = tomllib.load(tiko_configuration_file)
-        process_list(['rust', 'nu', 'zellij'], self.terminal)
+        process_list(['rust', 'nu', 'zellij', 'bottom'], self.terminal)
 
 
 if __name__ == '__main__':
