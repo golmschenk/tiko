@@ -1,5 +1,6 @@
 from tiko.module import Module
 from tiko.modules.bottom_module import BottomModule
+from tiko.modules.dua_module import DuaModule
 from tiko.modules.nu_module import NuModule
 from tiko.modules.rust_module import RustModule
 from tiko.modules.zellij_module import ZellijModule
@@ -10,6 +11,7 @@ module_name_to_class_mapping = {
     'nu': NuModule,
     'zellij': ZellijModule,
     'bottom': BottomModule,
+    'dua': DuaModule,
 }
 
 
