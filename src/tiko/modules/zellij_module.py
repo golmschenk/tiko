@@ -10,6 +10,6 @@ class ZellijModule(Module):
 
     def install(self) -> None:
         if not self.check_if_installed():
-            self.terminal.run_command('cargo install zellij')
+            self.terminal.install_cargo_crate('zellij')
             if not self.check_if_installed():
                 raise InstallConfirmationError

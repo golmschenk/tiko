@@ -10,6 +10,6 @@ class BottomModule(Module):
 
     def install(self) -> None:
         if not self.check_if_installed():
-            self.terminal.run_command('cargo install bottom --locked')
+            self.terminal.install_cargo_crate('bottom')
             if not self.check_if_installed():
                 raise InstallConfirmationError

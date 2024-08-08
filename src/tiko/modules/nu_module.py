@@ -11,8 +11,8 @@ class NuModule(Module):
 
     def install(self) -> None:
         if not self.check_if_installed():
-            self.terminal.run_command('cargo install nu')
-            self.terminal.run_command('cargo install nu_plugin_polars')
+            self.terminal.install_cargo_crate('nu')
+            self.terminal.install_cargo_crate('nu_plugin_polars')
             # TODO: Run `plugin add ~/.cargo/bin/nu_plugin_polars` inside a nu instance.
             if not self.check_if_installed():
                 raise InstallConfirmationError

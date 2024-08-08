@@ -45,3 +45,10 @@ class Terminal:
         output = self.run_command(f'which {command}')
         output_lines = output.splitlines()
         return len(output_lines) > 1
+
+    def install_cargo_crate(self, crate_name: str) -> None:
+        locked_install_output = self.run_command(f'cargo install --locked {crate_name}')
+        if 'error: failed to compile' in locked_install_output:
+            unlocked_install_output = self.run_command(f'cargo install {crate_name}')
+            if 'error: failed to compile' in unlocked_install_output:
+                raise TerminalError(f'Failed to install cargo crate {crate_name}.')
