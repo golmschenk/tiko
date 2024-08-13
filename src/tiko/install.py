@@ -29,7 +29,7 @@ class Installer:
 
 
 if __name__ == '__main__':
+    installer = Installer.new()
     logger = logging.getLogger('tiko')
     logger.setLevel(logging.DEBUG)
-    installer = Installer.new()
     installer.install()
