@@ -39,6 +39,7 @@ class Terminal:
         output = output.replace('\r\n', '\n')
         for output_line in output.splitlines():
             logger.info(output_line)
+            logger.info('#######################')
         return output
 
     def check_if_command_exists(self, command: str) -> bool:
