@@ -29,6 +29,7 @@ class Terminal:
         return instance
 
     def run_command(self, command: str) -> str:
+        logger.debug(f'Sending command: `{command}`')
         self.process.sendline(command)
         self.process.expect(prompt_prefix, timeout=None)
         output = self.log_and_return_before()
@@ -38,8 +39,9 @@ class Terminal:
         output = self.process.before
         output = output.replace('\r\n', '\n')
         for output_line in output.splitlines():
+            logger.debug('Pexpect output start.')
             logger.info(output_line)
-            logger.debug('########## pexpect before split ##########')
+            logger.debug('Pexpect output end.')
         return output
 
     def check_if_command_exists(self, command: str) -> bool:
