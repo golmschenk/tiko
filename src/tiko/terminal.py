@@ -23,9 +23,12 @@ class Terminal:
     def new(cls) -> Self:
         process = spawn('/bin/bash', encoding='utf-8')
         instance = cls(process=process)
+        logger.debug('Setting up prompt.')
         process.sendline(f'export PS1="{prompt_prefix}> "')
-        process.expect(prompt_prefix, timeout=None)
-        process.expect(prompt_prefix, timeout=None)
+        output0 = process.expect(prompt_prefix, timeout=None)
+        logger.debug(f'Prompt pexpect before 0: {output0}')
+        output1 = process.expect(prompt_prefix, timeout=None)
+        logger.debug(f'Prompt pexpect before 1: {output1}')
         return instance
 
     def run_command(self, command: str) -> str:
