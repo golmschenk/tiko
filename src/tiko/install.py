@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Self
 
+import logging
 from tiko.logging import set_up_default_logger
 from tiko.module_processing import process_list
 from tiko.terminal import Terminal
@@ -28,5 +29,7 @@ class Installer:
 
 
 if __name__ == '__main__':
+    logger = logging.getLogger('tiko')
+    logger.setLevel(logging.DEBUG)
     installer = Installer.new()
     installer.install()
