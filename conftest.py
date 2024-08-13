@@ -12,3 +12,4 @@ def pytest_configure(config):
     handler.setFormatter(formatter)
     logger = logging.getLogger('tiko')
     logger.addHandler(handler)
+    logger.setLevel(logging.DEBUG)
