@@ -16,9 +16,6 @@ class Installer:
 
     @classmethod
     def new(cls) -> Self:
-        set_up_default_logger()
-        logger = logging.getLogger('tiko')
-        logger.setLevel(logging.DEBUG)
         instance = cls(Terminal.new())
         return instance
 
@@ -31,5 +28,8 @@ class Installer:
 
 
 if __name__ == '__main__':
+    set_up_default_logger()
+    logger = logging.getLogger('tiko')
+    logger.setLevel(logging.DEBUG)
     installer = Installer.new()
     installer.install()
