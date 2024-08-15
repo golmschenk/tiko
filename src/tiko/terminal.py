@@ -59,7 +59,9 @@ class Terminal:
             output_line = output_line.strip()
             if len(output_line) > 0:
                 updated_output_lines.append(output_line)
-        return len(output_lines) > 1
+        command_exists = len(output_lines) > 1
+        logger.debug(f'Command found: {command_exists}')
+        return command_exists
 
     def install_cargo_crate(self, crate_name: str) -> None:
         locked_install_output = self.run_command(f'cargo install --locked {crate_name}')
