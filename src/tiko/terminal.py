@@ -54,6 +54,11 @@ class Terminal:
     def check_if_command_exists(self, command: str) -> bool:
         output = self.run_command(f'which {command}')
         output_lines = output.splitlines()
+        updated_output_lines: list[str] = []
+        for output_line in output_lines:
+            output_line = output_line.strip()
+            if len(output_line) > 0:
+                updated_output_lines.append(output_line)
         return len(output_lines) > 1
 
     def install_cargo_crate(self, crate_name: str) -> None:
