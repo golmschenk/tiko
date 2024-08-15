@@ -59,6 +59,7 @@ class Terminal:
             output_line = output_line.strip()
             if len(output_line) > 0:
                 updated_output_lines.append(output_line)
+        output_lines = updated_output_lines
         command_exists = len(output_lines) > 1
         logger.debug(f'Command found: {command_exists}')
         return command_exists
