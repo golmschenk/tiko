@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from pexpect import spawn
 
 import logging
@@ -22,7 +24,7 @@ class Terminal:
     @classmethod
     def new(cls) -> Self:
         process = spawn('/bin/bash', encoding='utf-8')
-        process.logfile = 'pexpect.log'
+        process.logfile = Path('pexpect.log').open('a')
         instance = cls(process=process)
         logger.debug('Setting up prompt.')
         process.sendline(f'export PS1="{prompt_prefix}> "')
