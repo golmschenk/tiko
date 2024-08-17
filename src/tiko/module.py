@@ -19,7 +19,7 @@ class Module(ABC):
     dependencies: list[Self] | None = None
 
     @abstractmethod
-    def install(self) -> None:
+    def process(self) -> None:
         pass
 
     def check_if_dependencies_processed(self, processed_module_classes: list[Self]) -> None:

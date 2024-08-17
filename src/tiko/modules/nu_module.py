@@ -9,7 +9,7 @@ class NuModule(Module):
     def check_if_installed(self) -> bool:
         return self.terminal.check_if_command_exists('nu')
 
-    def install(self) -> None:
+    def process(self) -> None:
         if not self.check_if_installed():
             self.terminal.install_cargo_crate('nu')
             self.terminal.install_cargo_crate('nu_plugin_polars')
@@ -20,5 +20,5 @@ class NuModule(Module):
 
 if __name__ == '__main__':
     module = NuModule(Terminal.new())
-    module.install()
+    module.process()
 
