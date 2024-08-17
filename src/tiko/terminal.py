@@ -28,11 +28,10 @@ class Terminal:
         instance = cls(process=process)
         logger.debug('Setting up prompt.')
         process.sendline(f'export PS1="{prompt_prefix}> "')
+        process.sendline(f'bind \'set enable-bracketed-paste off\'')
         process.sendline(f'echo 0')
-        output0 = process.expect(f'{prompt_prefix}> echo 0', timeout=None)
-        logger.debug(f'Prompt pexpect before 0: {output0}')
-        output1 = process.expect(prompt_prefix, timeout=None)
-        logger.debug(f'Prompt pexpect before 1: {output1}')
+        process.expect(f'{prompt_prefix}> echo 0', timeout=None)
+        process.expect(prompt_prefix, timeout=None)
         return instance
 
     def run_command(self, command: str) -> str:
