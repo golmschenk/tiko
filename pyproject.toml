@@ -12,6 +12,7 @@ dependencies = [
   "pexpect",
   "pytest",
   "pytest-cov",
+  "requests"
 ]
 
 [build-system]
