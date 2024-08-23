@@ -2,7 +2,7 @@ from tiko.modules.rust_module import RustModule
 from tiko.simple_module import SimpleModule
 
 
-class BottomModule(SimpleModule):
+class ZellijModule(SimpleModule):
     dependencies = [RustModule]
     installed_command_name = 'zellij'
 
