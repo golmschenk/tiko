@@ -11,7 +11,7 @@ class SimpleModule(Module, ABC):
 
     def process(self) -> None:
         if not self.check_if_installed():
-            self.process()
+            self.install()
             if not self.check_if_installed():
                 raise InstallConfirmationError
 
