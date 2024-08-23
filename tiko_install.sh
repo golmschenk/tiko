@@ -2,25 +2,31 @@
 
 set -x
 
-echo "Installing homebrew."
-if [[ $(uname) == "Darwin" ]]; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-elif [[ $(uname) == "Linux" ]]; then
-  mkdir $HOME/.homebrew
-  curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip-components 1 -C $HOME/.homebrew
-  eval "$($HOME/.homebrew/bin/brew shellenv)"
-  brew update --force --quiet
-  chmod -R go-w "$(brew --prefix)/share/zsh"
-else
-  echo "Unexpected operating system: $(uname)"
-  exit 1
-fi
+mkdir -p "${HOME}/.local/bin"
 
-brew install gcc
-brew link gcc
+# shellcheck disable=SC2016
+echo 'if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi' >> "$HOME/.profile"
+source "$HOME/.profile"
+
+PORTABLE_NIX_URL="https://github.com/DavHau/nix-portable/releases/latest/download/nix-portable-$(uname -m)"
+if command -v curl &> /dev/null; then
+  curl -L "${PORTABLE_NIX_URL}" > "$HOME/.local/bin/nix-portable"
+else
+  wget -O "$HOME/.local/bin/nix-portable" "${PORTABLE_NIX_URL}"
+fi
+chmod +x "$HOME/.local/bin/nix-portable"
+
+ln -s "$HOME/.local/bin/nix-portable" "$HOME/.local/bin/nix-env"
+ln -s "$HOME/.local/bin/nix-portable" "$HOME/.local/bin/nix-shell"
+ln -s "$HOME/.local/bin/nix-portable" "$HOME/.local/bin/nix-build"
+ln -s "$HOME/.local/bin/nix-portable" "$HOME/.local/bin/nix-store"
+ln -s "$HOME/.local/bin/nix-portable" "$HOME/.local/bin/nix-channel"
+ln -s "$HOME/.local/bin/nix-portable" "$HOME/.local/bin/nix"
 
 echo "Installing nu."
-brew install nu
+nix profile install nixpkgs#nushell
 
 echo "Starting nu script."
 nu tiko.nu
