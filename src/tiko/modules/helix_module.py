@@ -63,12 +63,8 @@ class HelixModule(SimpleModule):
         for path in original_name_release_directory.iterdir():
             path.rename(helix_path.joinpath(path.name))
         original_name_release_directory.rmdir()
-        with Path.home().joinpath('.bash_profile').open('a') as bash_profile_file:
-            bash_profile_file.write('\nexport PATH=$HOME/.tiko/helix:$PATH')
-        # TODO: Continue here. Add it to path. Add the library stuff.
-
-
-if __name__ == '__main__':
-    terminal = Terminal.new()
-    module = HelixModule(terminal)
-    module.install()
+        with Path.home().joinpath('.profile').open('a') as profile_file:
+            profile_file.write('\nexport PATH=$HOME/.tiko/helix:$PATH')
+        helix_runtime_directory = Path.home().joinpath('.config/helix/runtime')
+        helix_runtime_directory.parent.mkdir(exist_ok=True, parents=True)
+        helix_path.joinpath('runtime').rename(helix_runtime_directory)
