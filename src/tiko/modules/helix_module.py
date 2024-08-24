@@ -18,8 +18,7 @@ def download_file(url: str, path: Path):
 
 
 class HelixModule(SimpleModule):
-    def check_if_installed(self) -> bool:
-        return self.terminal.check_if_command_exists('nu')
+    installed_command_name = 'hx'
 
     def install(self) -> None:
         latest_helix_release_url = 'https://api.github.com/repos/helix-editor/helix/releases/latest'
