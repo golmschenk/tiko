@@ -1,6 +1,7 @@
+from pathlib import Path
+
 from tiko.module import Module, InstallConfirmationError
 from tiko.modules.rust_module import RustModule
-from tiko.terminal import Terminal
 
 
 class NuModule(Module):
@@ -13,6 +14,6 @@ class NuModule(Module):
         if not self.check_if_installed():
             self.terminal.install_cargo_crate('nu')
             self.terminal.install_cargo_crate('nu_plugin_polars')
-            # TODO: Run `plugin add ~/.cargo/bin/nu_plugin_polars` inside a nu instance.
+            self.terminal.run_command(f'nu -c "plugin add {str(Path.home().joinpath('/.cargo/bin/nu_plugin_polars'))}"')
             if not self.check_if_installed():
                 raise InstallConfirmationError
