@@ -23,7 +23,7 @@ conda activate ${DEFAULT_CONDA_ENV_NAME} >> ${LOG_PATH} 2> >(tee -a ${LOG_PATH} 
 
 echo "Installing tiko Python package."
 if [ -d "tiko" ] ; then
-    echo "Installing from local verison."
+    echo "Installing from local version."
     pip install -e tiko >> ${LOG_PATH} 2> >(tee -a ${LOG_PATH} >&2)
 else
     pip install tiko >> ${LOG_PATH} 2> >(tee -a ${LOG_PATH} >&2)

@@ -248,3 +248,4 @@ hs_err_pid*
 # Project specific.
 /tiko_install.log
 /tiko_configuration.toml
+/.vagrant
