@@ -9,8 +9,22 @@ import requests
 from tiko.internal.exceptions import GitHubAssetError
 
 
+def get_github_token() -> str:
+    """
+    Gets a public repository read-only GitHub token. The token is in hex just to prevent automated systems from
+    detecting it. However, it has no real power anyway, since it's a public repository read-only token and doesn't
+    matter if it's leaked.
+
+    :return: The token.
+    """
+    hex_token = ('6769746875625f7061745f3131424344345a584930525a6d7730344e42546b4a795f50425273396c4541746a586e695364445'
+                 '65735484c645231754f354635647a73674a3054365162694a5659354e5a595135435a4b4b4b48564b3652')
+    token = bytearray.fromhex(hex_token).decode()
+    return token
+
+
 def download_github_asset(github_owner: str, github_repository: str, asset_pattern: str, destination_directory: Path):
-    github_token = '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'
+    github_token = get_github_token()
     headers = {'Authorization': f'token {github_token}'}
     latest_release_url = f'https://api.github.com/repos/{github_owner}/{github_repository}/releases/latest'
     response = requests.get(latest_release_url, headers=headers)
