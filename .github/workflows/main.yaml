@@ -26,7 +26,7 @@ jobs:
         uses: docker/setup-compose-action@v1
 
       - name: run_install_in_docker_container
-        run: docker compose up --build
+        run: docker compose up --build --exit-code-from "tiko_environment"
 
   tag_and_release:
     name: tag_version
