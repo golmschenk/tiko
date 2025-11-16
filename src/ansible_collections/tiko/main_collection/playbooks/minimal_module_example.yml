@@ -1,0 +1,11 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  collections:
+    - tiko.main_collection
+  tasks:
+    - name: install_helix
+      tiko.main_collection.install_helix:
+    - name: Intentionally fail the task
+      fail:
+        msg: "This task failed intentionally for testing"

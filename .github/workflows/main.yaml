@@ -22,6 +22,12 @@ jobs:
       - name: build_dist
         run: hatch build
 
+      - name: set_up_docker_compose
+        uses: docker/setup-compose-action@v1
+
+      - name: run_install_in_docker_container
+        run: docker compose up --build
+
   tag_and_release:
     name: tag_version
     needs: [build]

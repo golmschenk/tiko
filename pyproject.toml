@@ -6,10 +6,10 @@ authors = [
     { name = "Greg Olmschenk", email = "greg@olmschenk.com" },
 ]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 
 dependencies = [
-  "pexpect",
+  "ansible",
   "pytest",
   "pytest-cov",
   "requests"
