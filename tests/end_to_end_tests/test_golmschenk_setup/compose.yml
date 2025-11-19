@@ -1,0 +1,5 @@
+services:
+  tiko_environment:
+    build:
+      context: ../../../
+      dockerfile: tests/end_to_end_tests/test_golmschenk_setup/Dockerfile

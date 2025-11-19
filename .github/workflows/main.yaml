@@ -39,11 +39,12 @@ jobs:
         uses: docker/setup-compose-action@v1
 
       - name: run_install_in_docker_container
-        run: docker compose up --build --exit-code-from "tiko_environment"
+        run: docker-compose -f tests/end_to_end_tests/test_golmschenk_setup/compose.yml up --force-recreate \
+          --build --exit-code-from "tiko_environment"
 
   tag_and_release:
-    name: tag_version
-    needs: [build]
+    name: tag_version˚
+    needs: [ build ]
     runs-on: ubuntu-latest
     permissions: write-all
     if: github.ref == 'refs/heads/main'

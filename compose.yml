@@ -1,3 +1,0 @@
-services:
-  tiko_environment:
-    build: .
