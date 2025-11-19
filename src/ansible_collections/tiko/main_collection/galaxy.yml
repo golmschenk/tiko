@@ -1,0 +1,16 @@
+namespace: tiko
+name: main_collection
+version: 0.1.0
+readme: README.md
+authors:
+- Greg Olmschenk <greg@olmschenk.com>
+description: A collection for configuring machines for general development use.
+license:
+- Apache-2.0
+tags: []
+dependencies: {}
+repository: https://github.com/golmschenk/tiko
+documentation: http://tiko.readthedocs.org
+homepage: https://github.com/golmschenk/tiko
+issues: https://github.com/golmschenk/tiko/issues
+build_ignore: []
